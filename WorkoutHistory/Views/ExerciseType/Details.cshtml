@@ -1,0 +1,20 @@
+﻿@model WorkoutHistoryApp.Models.ViewModels.DetailsExerciseType
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/ExerciseType/List">Go back to list</a>
+<br />
+<a href="/ExerciseType/Edit/@Model.SelectedExerciseType.ExerciseTypeID">Update</a>
+<br />
+<a style="color:#ab2020;" href="/ExerciseType/DeleteConfirm/@Model.SelectedExerciseType.ExerciseTypeID">Delete</a>
+<h2>@Model.SelectedExerciseType.ExerciseTypeName</h2>
+
+<div>
+    <h2>Exercises for @Model.SelectedExerciseType.ExerciseTypeName:</h2>
+    @foreach(var exercise in Model.AllExercises)
+    {
+        <a href="/Exercise/Details/@exercise.ExerciseID">@exercise.ExerciseName</a><br />
+    }
+</div>
+

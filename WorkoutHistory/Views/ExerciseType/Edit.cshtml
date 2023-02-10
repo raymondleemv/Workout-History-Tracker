@@ -1,0 +1,19 @@
+﻿@model WorkoutHistoryApp.Models.ExerciseTypeDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update ExerciseType</h2>
+<a href="/ExerciseType/List">Cancel</a>
+<form action="/ExerciseType/Update/@Model.ExerciseTypeID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="ExerciseTypeID" value="@Model.ExerciseTypeID" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="ExerciseTypeName" value="@Model.ExerciseTypeName" />
+    </div>
+    <div>
+        <input type="submit" value="Update ExerciseType" />
+    </div>
+</form>

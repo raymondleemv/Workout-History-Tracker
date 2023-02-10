@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WorkoutHistoryApp.Models.ExerciseTypeDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List - Exercise Type</h2>
+<a href="/ExerciseType/New">New Exercise Type</a>
+@foreach(var exerciseType in Model)
+{
+    <h2><a href="/ExerciseType/Details/@exerciseType.ExerciseTypeID">@exerciseType.ExerciseTypeName</a></h2>
+}

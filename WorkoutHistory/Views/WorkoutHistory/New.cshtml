@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WorkoutHistoryApp.Models.ExerciseDto>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create WorkoutHistory</h2>
+<form action="/WorkoutHistory/Create" method="POST">
+    <div>
+        <label>Date:</label> <input type="date" name="Date" />
+    </div>
+    <div>
+        <label>Exercise:</label>
+        <select name="ExerciseID">
+            @foreach (var exercise in Model)
+            {
+                <option value="@exercise.ExerciseID">@exercise.ExerciseName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Description:</label>
+        <textarea name="Description"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Create WorkoutHistory" />
+    </div>
+</form>

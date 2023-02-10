@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<a href="/WorkoutHistory/New">New WorkoutHistory</a>
+@foreach(var WorkoutHistoryDate in Model)
+{
+    <h2><a href="/WorkoutHistory/Details/@WorkoutHistoryDate">@WorkoutHistoryDate</a></h2>
+}

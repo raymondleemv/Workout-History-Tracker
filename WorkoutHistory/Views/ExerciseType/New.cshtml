@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WorkoutHistoryApp.Models.ExerciseDto>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Exercise Type</h2>
+<a href="/ExerciseType/List">Cancel</a>
+<form action="/ExerciseType/Create" method="POST">
+    <div>
+        <label>Name:</label> <input type="text" name="ExerciseTypeName" />
+    </div>
+    <div>
+        <input type="submit" value="Add Exercise Type" />
+    </div>
+</form>
+
+

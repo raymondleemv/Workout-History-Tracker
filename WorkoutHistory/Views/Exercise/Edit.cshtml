@@ -1,0 +1,34 @@
+﻿@model WorkoutHistoryApp.Models.ViewModels.DetailsExercise
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Exercise</h2>
+<a href="/Exercise/List">Cancel</a>
+<form action="/Exercise/Update/@Model.SelectedExercise.ExerciseID" method="POST">
+    <div style="display:none;">
+        @* Pass through the Exercise ID *@
+        <input type="text" name="ExerciseID" value="@Model.SelectedExercise.ExerciseID" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="ExerciseName" value="@Model.SelectedExercise.ExerciseName" />
+    </div>
+    <div>
+        <label>Exercise Type:</label>
+        <select name="ExerciseTypeID">
+            @foreach (var exerciseType in Model.AllExerciseTypes)
+            {
+                string selected = "";
+                if (exerciseType.ExerciseTypeID == Model.SelectedExercise.ExerciseTypeID)
+                {
+                    selected = "selected";
+                }
+                <option value="@exerciseType.ExerciseTypeID" @selected>@exerciseType.ExerciseTypeName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Exercise" />
+    </div>
+</form>

@@ -1,0 +1,17 @@
+﻿@model WorkoutHistoryApp.Models.ExerciseDto
+
+
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Exercise/List">Go back to list</a>
+<br />
+<a href="/Exercise/Edit/@Model.ExerciseID">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Exercise/DeleteConfirm/@Model.ExerciseID">Delete</a>
+<h2>@Model.ExerciseName</h2>
+
+<div>
+    <p>Exercise Type: <a href="/ExerciseType/Details/@Model.ExerciseTypeID">@Model.ExerciseTypeName</a></p>
+</div>
