@@ -28,3 +28,13 @@ textarea {
     background-color: #777;
     border-color: #fff
 }
+
+th {
+    background-color: #222;
+    color: #9d9d9d;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 10px;
+}

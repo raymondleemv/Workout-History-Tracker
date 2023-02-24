@@ -1,0 +1,37 @@
+﻿@model WorkoutHistoryApp.Models.ViewModels.DetailsWorkout
+
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Workout/List">Go back to list</a>
+<br />
+<a href="/Workout/Edit/@Model.SelectedWorkout.WorkoutID">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Workout/DeleteConfirm/@Model.SelectedWorkout.WorkoutID">Delete</a>
+<br />
+<a href="/WorkoutItem/New/@Model.SelectedWorkout.WorkoutID">Add workout item</a>
+
+<div>
+    <h3>Workout Items on @Model.SelectedWorkout.WorkoutDate</h3>
+    <table>
+        <tr>
+            <th>Exercise Type</th>
+            <th>Exercise</th>
+            <th>Weight</th>
+            <th>Reps</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        @foreach (var Workout in Model.WorkoutItemsForSelectedWorkout)
+        {
+        <tr>
+            <td><a href="/ExerciseType/Details/@Workout.ExerciseTypeID">@Workout.ExerciseTypeName</a></td>
+            <td><a href="/Exercise/Details/@Workout.ExerciseID">@Workout.ExerciseName</a></td>
+            <td>@Workout.Weight</td>
+            <td>@Workout.Reps</td>
+            <td><a href="/WorkoutItem/Edit/@Workout.WorkoutItemID">Update</a></td>
+            <td><a style="color:#ab2020;" href="/WorkoutItem/DeleteConfirm/@Workout.WorkoutItemID">[x]</a></td>
+        </tr>
+        }
+    </table>
+</div>

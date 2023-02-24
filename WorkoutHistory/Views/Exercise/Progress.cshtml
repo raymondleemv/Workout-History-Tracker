@@ -1,0 +1,19 @@
+﻿@model WorkoutHistoryApp.Models.ViewModels.ProgressExercise
+
+@{
+    ViewBag.Title = "Progress";
+}
+
+@{
+    var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("Progress")
+        .SetXAxis(title: "workouts")
+        .SetYAxis(title: "workout volume")
+        .AddSeries(
+            name: "Employee",
+            chartType: "Line",
+            axisLabel: "workouts",
+            xValue: Model.WorkoutDates,
+            yValues: Model.WorkoutVolumes)
+        .Write();
+}

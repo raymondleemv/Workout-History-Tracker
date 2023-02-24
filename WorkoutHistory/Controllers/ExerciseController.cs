@@ -8,6 +8,7 @@ using System.Diagnostics;
 using WorkoutHistoryApp.Models;
 using System.Web.Script.Serialization;
 using WorkoutHistoryApp.Models.ViewModels;
+using Microsoft.Ajax.Utilities;
 
 namespace WorkoutHistoryApp.Controllers
 {
@@ -46,6 +47,7 @@ namespace WorkoutHistoryApp.Controllers
         // GET: Exercise/Details/5
         public ActionResult Details(int id)
         {
+            DetailsExercise ViewModel = new DetailsExercise();
             //objective: communicate with our Exercise data api to retrieve one Exercise
             //curl https://localhost:44307/api/Exercisedata/FindExercise/{id}
 
@@ -55,17 +57,68 @@ namespace WorkoutHistoryApp.Controllers
             //Debug.WriteLine("The response code is ");
             //Debug.WriteLine(response.StatusCode);
 
-            ExerciseDto SelectedExercise = response.Content.ReadAsAsync<ExerciseDto>().Result;
+            ExerciseDto selectedExercise = response.Content.ReadAsAsync<ExerciseDto>().Result;
+            ViewModel.SelectedExercise = selectedExercise;
             //Debug.WriteLine("Exercise received : ");
             //Debug.WriteLine(SelectedExercise.ExerciseName);
+            url = "WorkoutItemData/ListWorkoutsForExercise/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<WorkoutDto> WorkoutsForSelectedExercise = response.Content.ReadAsAsync<IEnumerable<WorkoutDto>>().Result;
 
-            return View(SelectedExercise);
+            ViewModel.WorkoutsForSelectedExercise = WorkoutsForSelectedExercise;
+
+            return View(ViewModel);
         }
 
         public ActionResult Error()
         {
-
             return View();
+        }
+
+        public ActionResult Progress(int id)
+        {
+            /*ProgressExercise ViewModel = new ProgressExercise();
+
+            string url = "WorkoutData/ListWorkoutHistoryDatesForExercise/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<string> workoutHistoryForSelectedExercise = response.Content.ReadAsAsync<IEnumerable<string>>().Result;
+            ViewModel.Dates = workoutHistoryForSelectedExercise;
+
+            List<int> workoutVolumes = new List<int>();
+
+            workoutHistoryForSelectedExercise.ForEach(wh =>
+            {
+                url = "WorkoutData/ListWorkoutVolumeForExerciseOnDate/" + id + "/" + wh;
+                response = client.GetAsync(url).Result;
+                int workoutVolume = response.Content.ReadAsAsync<int>().Result;
+                workoutVolumes.Add(workoutVolume);
+            });
+
+            ViewModel.WorkoutVolumes = workoutVolumes;*/
+
+            ProgressExercise ViewModel = new ProgressExercise();
+
+            string url = "WorkoutItemData/ListWorkoutsForExercise/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<WorkoutDto> workouts = response.Content.ReadAsAsync<IEnumerable<WorkoutDto>>().Result;
+            List<string> workoutDates = new List<string>();
+            workouts.ForEach(w =>
+            {
+                workoutDates.Add(w.WorkoutDate);
+            });
+            ViewModel.WorkoutDates = workoutDates;
+
+            List<int> workoutVolumes = new List<int>();
+            workouts.ForEach(w =>
+            {
+                url = "WorkoutItemData/ListWorkoutVolumeForExerciseInWorkout/" + id + "/" + w.WorkoutID;
+                response = client.GetAsync(url).Result;
+                int workoutVolume = response.Content.ReadAsAsync<int>().Result;
+                workoutVolumes.Add(workoutVolume);
+            });
+            ViewModel.WorkoutVolumes = workoutVolumes;
+
+            return View(ViewModel);
         }
 
         // GET: Exercise/New
@@ -118,7 +171,7 @@ namespace WorkoutHistoryApp.Controllers
         // GET: Exercise/Edit/5
         public ActionResult Edit(int id)
         {
-            DetailsExercise ViewModel = new DetailsExercise();
+            EditExercise ViewModel = new EditExercise();
             string url = "ExerciseData/FindExercise/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             ExerciseDto selectedExercise = response.Content.ReadAsAsync<ExerciseDto>().Result;

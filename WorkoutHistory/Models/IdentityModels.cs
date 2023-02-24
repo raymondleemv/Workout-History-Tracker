@@ -27,7 +27,8 @@ namespace WorkoutHistoryApp.Models
 
         public DbSet<ExerciseType> ExerciseType { get; set; }
         public DbSet<Exercise> Exercise { get; set; }
-        public DbSet<WorkoutHistory> WorkoutHistory { get; set; }
+        public DbSet<WorkoutItem> WorkoutItem { get; set; }
+        public DbSet<Workout> Workout { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -1,0 +1,43 @@
+﻿@model WorkoutHistoryApp.Models.ViewModels.UpdateWorkoutItem
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update WorkoutItem</h2>
+<a href="/Workout/Details/@Model.SelectedWorkoutItem.WorkoutID">Cancel</a>
+<form action="/WorkoutItem/Update/@Model.SelectedWorkoutItem.WorkoutItemID" method="POST">
+    <div style="display:none;">
+        @* Pass through the WorkoutItem ID *@
+        <input type="text" name="WorkoutItemID" value="@Model.SelectedWorkoutItem.WorkoutItemID" />
+    </div>
+
+    <div style="display:none;">
+        @* Pass through the Workout ID *@
+        <input type="text" name="WorkoutID" value="@Model.SelectedWorkoutItem.WorkoutID" />
+    </div>
+
+    <div>
+        <label>Exercise:</label>
+        <select name="ExerciseID">
+            @foreach (var exercise in Model.AllExercises)
+            {
+                string selected = "";
+                if (exercise.ExerciseID == Model.SelectedWorkoutItem.ExerciseID)
+                {
+                    selected = "selected";
+                }
+                <option value="@exercise.ExerciseID" @selected>@exercise.ExerciseName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Weight (lbs):</label> <input name="Weight" value=@Model.SelectedWorkoutItem.Weight />
+    </div>
+    <div>
+        <label>Reps:</label> <input name="Reps" value=@Model.SelectedWorkoutItem.Reps />
+    </div>
+    <div>
+        <input type="submit" value="Update Workout Item" />
+    </div>
+</form>

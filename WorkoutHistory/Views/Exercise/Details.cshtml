@@ -1,4 +1,4 @@
-﻿@model WorkoutHistoryApp.Models.ExerciseDto
+﻿@model WorkoutHistoryApp.Models.ViewModels.DetailsExercise
 
 
 @{
@@ -7,11 +7,20 @@
 
 <a href="/Exercise/List">Go back to list</a>
 <br />
-<a href="/Exercise/Edit/@Model.ExerciseID">Update</a>
+<a href="/Exercise/Edit/@Model.SelectedExercise.ExerciseID">Update</a>
 <br />
-<a style="color:#ab2020;" href="/Exercise/DeleteConfirm/@Model.ExerciseID">Delete</a>
-<h2>@Model.ExerciseName</h2>
+<a style="color:#ab2020;" href="/Exercise/DeleteConfirm/@Model.SelectedExercise.ExerciseID">Delete</a>
+<h2>@Model.SelectedExercise.ExerciseName</h2>
 
 <div>
-    <p>Exercise Type: <a href="/ExerciseType/Details/@Model.ExerciseTypeID">@Model.ExerciseTypeName</a></p>
+    <p>Exercise Type: <a href="/ExerciseType/Details/@Model.SelectedExercise.ExerciseTypeID">@Model.SelectedExercise.ExerciseTypeName</a></p>
+</div>
+
+<div>
+    <p>You have done this exercise in the below workouts</p>
+    @foreach (var workout in Model.WorkoutsForSelectedExercise)
+    {
+        <a href="/Workout/Details/@workout.WorkoutID">@workout.WorkoutDate</a><br />
+    }
+    <img src="../Progress/@Model.SelectedExercise.ExerciseID"/>
 </div>

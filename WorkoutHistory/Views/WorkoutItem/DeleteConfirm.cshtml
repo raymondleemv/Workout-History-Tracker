@@ -1,0 +1,15 @@
+﻿@model WorkoutHistoryApp.Models.WorkoutItemDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Workout Item on @Model.WorkoutDate?</h2>
+<a href="/Workout/Details/@Model.WorkoutID">Cancel</a>
+<p>Exercise Type: <a href="/ExerciseType/Details/@Model.ExerciseTypeID">@Model.ExerciseTypeName</a></p>
+<p>Exercise: <a href="/Exercise/Details/@Model.ExerciseID">@Model.ExerciseName</a></p>
+<p>Weight (lbs): @Model.Weight</p>
+<p>Reps: @Model.Reps</p>
+<form action="/WorkoutItem/Delete/@Model.WorkoutItemID" method="POST">
+    <input type="submit" value="Confirm Delete"/>
+</form>

@@ -1,0 +1,32 @@
+﻿@model WorkoutHistoryApp.Models.ViewModels.NewWorkoutItem
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create WorkoutItem For @Model.SelectedWorkout.WorkoutDate</h2>
+<a href="/Workout/Details/@Model.SelectedWorkout.WorkoutID">Cancel</a>
+<form action="/WorkoutItem/Create" method="POST">
+    <div style="display:none;">
+        @* Pass through the Workout ID *@
+        <input type="text" name="WorkoutID" value="@Model.SelectedWorkout.WorkoutID" />
+    </div>
+    <div>
+        <label>Exercise:</label>
+        <select name="ExerciseID">
+            @foreach (var exercise in Model.AllExercises)
+            {
+                <option value="@exercise.ExerciseID">@exercise.ExerciseName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Weight (lbs):</label> <input name="Weight" />
+    </div>
+    <div>
+        <label>Reps:</label> <input name="Reps" />
+    </div>
+    <div>
+        <input type="submit" value="Create Workout Item" />
+    </div>
+</form>

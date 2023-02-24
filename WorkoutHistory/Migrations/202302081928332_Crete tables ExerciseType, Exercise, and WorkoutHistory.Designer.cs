@@ -13,7 +13,7 @@ namespace WorkoutHistoryApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202302081928332_Crete tables ExerciseType, Exercise, and WorkoutHistory"; }
+            get { return "202302081928332_Crete tables ExerciseType, Exercise, and Workout"; }
         }
         
         string IMigrationMetadata.Source

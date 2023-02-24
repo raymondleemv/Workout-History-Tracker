@@ -8,6 +8,6 @@ namespace WorkoutHistoryApp.Models.ViewModels
     public class DetailsExercise
     {
         public ExerciseDto SelectedExercise { get; set; }
-        public IEnumerable<ExerciseTypeDto> AllExerciseTypes { get; set; }
+        public IEnumerable<WorkoutDto> WorkoutsForSelectedExercise { get; set; }
     }
 }

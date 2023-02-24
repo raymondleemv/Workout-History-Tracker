@@ -1,0 +1,22 @@
+﻿@model WorkoutHistoryApp.Models.WorkoutDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Workout</h2>
+<a href="/Workout/Details/@Model.WorkoutID">Cancel</a>
+<form action="/Workout/Update/@Model.WorkoutID" method="POST">
+    <div style="display:none;">
+        @* Pass through the Workout ID *@
+        <input type="text" name="WorkoutID" value="@Model.WorkoutID" />
+    </div>
+
+    <div>
+        <label>Date:</label> <input type="date" name="WorkoutDate" value="@Model.WorkoutDate" />
+    </div>
+    <div>
+        <input type="submit" value="Update Workout" />
+
+    </div>
+</form>

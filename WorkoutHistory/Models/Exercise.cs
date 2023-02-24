@@ -16,6 +16,7 @@ namespace WorkoutHistoryApp.Models
         [ForeignKey("ExerciseType")]
         public int ExerciseTypeID { get; set; }
         public virtual ExerciseType ExerciseType { get; set; }
+        public ICollection<WorkoutItem> Workouts { get; set; }
     }
 
 

@@ -114,3 +114,6 @@ C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj
 C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj\Debug\WorkoutHistoryApp.csproj.CopyComplete
 C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj\Debug\WorkoutHistoryApp.dll
 C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj\Debug\WorkoutHistoryApp.pdb
+C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj\Debug\WorkoutHistoryApp.Migrations.UpdateWorkoutHistoryTable.resources
+C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj\Debug\WorkoutHistoryApp.Migrations.RenamedWorkouHistorytabletoWorkout.resources
+C:\Users\Raymond Lee\Documents\passion project\WorkoutHistory\WorkoutHistory\obj\Debug\WorkoutHistoryApp.Migrations.RenamedWorkouttabletoWorkoutItemtableUpdatedWorkoutItemtableCreatedWorkouttable.resources
